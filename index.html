@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- app start -->
+      <div id="app">
+        <h1>{{ title }}</h1>
+        <!-- form -->
+        <form class="form" @submit.prevent="onSubmit">
+          <input
+            type="text"
+            required
+            v-model="input.value"
+            :placeholder="input.placeholder"
+            ref="input"
+          />
+          <button type="submit">{{ actionButton }}</button>
+        </form>
+        <!-- notes list -->
+        <div class="notes" v-if="notes.length > 0">
+          <ul class="notes__list">
+            <li
+              class="notes__list--item"
+              v-for="(note, index) in notes"
+              :key="index"
+            >
+              <span @click="removeNote(index)">&#10005;</span>
+              {{ note }}
+              <span @click="editNote(index)">🖊</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- app end -->
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
